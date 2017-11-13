@@ -15,7 +15,7 @@
 1.复制LineChartRender，命名为LineChartCircleRenderer，添加代码：
 
 ~~~~JAVA
-	/**
+/**
      * 显示原点的x轴的对应的数组
      */
     private static List<Integer> mCirclePointPositions = new ArrayList<>();
@@ -33,7 +33,7 @@
 修改drawCircles()方法：
 
 ~~~~JAVA
-	/**
+/**
      * 画圆点  -- x轴值对应的y值的小圆圈
      *
      * @param c
@@ -123,7 +123,7 @@
 2.复制LineChart，命名为LineCircleChart，把所有的LineChartRender替换成LineChartCircleRenderer。
 
 ~~~~java
-public class LineCircleChart extends BarLineChartBase<LineData> implements 		  LineDataProvider {
+public class LineCircleChart extends BarLineChartBase<LineData> implements LineDataProvider {
 
     public LineCircleChart(Context context) {
         super(context);
@@ -163,7 +163,7 @@ public class LineCircleChart extends BarLineChartBase<LineData> implements 		  L
 3.使用线性图的时候使用刚改好的LineCircleChart，并调用我们在renderer中添加的方法。
 
 ~~~~JAVA
-		//设置那几个位置的圆点显示
+	//设置那几个位置的圆点显示
         List<Integer> position = new ArrayList<>();
         position.add(0);
         position.add(3);
@@ -176,7 +176,7 @@ public class LineCircleChart extends BarLineChartBase<LineData> implements 		  L
 注意：使用的时候请注意是否开启绘制圆点：
 
 ~~~~JAVA
-  		//绘制x轴对应的y轴数据值的圆点
+  	//绘制x轴对应的y轴数据值的圆点
         lineDataSet.setDrawCircles(true);
         //绘制的圆点是否是空心
         lineDataSet.setDrawCircleHole(false);
