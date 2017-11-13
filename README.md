@@ -171,8 +171,6 @@ public class LineCircleChart extends BarLineChartBase<LineData> implements LineD
         LineChartCircleRenderer.setCirclePoints(position);
 ~~~~
 
-
-
 注意：使用的时候请注意是否开启绘制圆点：
 
 ~~~~JAVA
@@ -186,3 +184,4 @@ public class LineCircleChart extends BarLineChartBase<LineData> implements LineD
         lineDataSet.setCircleRadius(5f);
 ~~~~
 
+特别强调：文中使用的是3.0.2版本的MPAndroid。
