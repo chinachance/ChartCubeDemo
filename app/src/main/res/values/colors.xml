@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <!-- 灰色-深-不透明 -->
+    <color name="gray_dark_ff">#ff333333</color>
+    <!-- 灰色-浅-不透明 -->
+    <color name="gray_light_ff">#ff999999</color>
+    <color name="red">#ffff0000</color>
+</resources>
