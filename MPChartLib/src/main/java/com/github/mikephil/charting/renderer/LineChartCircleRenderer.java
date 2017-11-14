@@ -3,8 +3,10 @@ package com.github.mikephil.charting.renderer;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 
 import com.github.mikephil.charting.animation.ChartAnimator;
@@ -171,7 +173,16 @@ public class LineChartCircleRenderer extends LineRadarRenderer {
             drawCubicFill(mBitmapCanvas, dataSet, cubicFillPath, trans, mXBounds);
         }
 
-        mRenderPaint.setColor(dataSet.getColor());
+        //修改颜色渐变-------start
+        if (!mColorGradient) {
+            mRenderPaint.setColor(dataSet.getColor());
+        }else if(mColors != null && mColors.length != 0){
+            LinearGradient linearGradient = new LinearGradient(0, 0, 100, 100, new int[] {
+                    mColors[0],mColors[1] }, null,
+                    Shader.TileMode.REPEAT);
+            mRenderPaint.setShader(linearGradient);
+        }
+        //修改颜色渐变-------end
 
         mRenderPaint.setStyle(Paint.Style.STROKE);
 
@@ -180,6 +191,34 @@ public class LineChartCircleRenderer extends LineRadarRenderer {
         mBitmapCanvas.drawPath(cubicPath, mRenderPaint);
 
         mRenderPaint.setPathEffect(null);
+        if (mColorGradient) {
+            mRenderPaint.setShader(null);
+        }
+    }
+
+    /**
+     * 颜色是否渐变
+     */
+    private static boolean mColorGradient;
+    /**
+     * 颜色渐变数组
+     */
+    private static int[] mColors;
+    /**
+     * 设置颜色是否渐变
+     * @param color
+     */
+    public static void isSetColorGradient(boolean color){
+        mColorGradient = color;
+    }
+
+    /**
+     * 设置颜色渐变的数组(getResources().getColor(R.color.red))
+     *  固定死，就传两个颜色，两个颜色的渐变
+     * @param colors
+     */
+    public static void setGradientColors(int[] colors){
+        mColors = colors;
     }
 
     protected void drawCubicBezier(ILineDataSet dataSet) {
@@ -251,7 +290,17 @@ public class LineChartCircleRenderer extends LineRadarRenderer {
             drawCubicFill(mBitmapCanvas, dataSet, cubicFillPath, trans, mXBounds);
         }
 
-        mRenderPaint.setColor(dataSet.getColor());
+        //修改颜色渐变-------start
+        if (!mColorGradient) {
+            mRenderPaint.setColor(dataSet.getColor());
+        }else if(mColors != null && mColors.length != 0){
+            LinearGradient linearGradient = new LinearGradient(0, 0, 100, 100, new int[] {
+                    mColors[0],mColors[1] }, null,
+                    Shader.TileMode.REPEAT);
+            mRenderPaint.setShader(linearGradient);
+        }
+        //修改颜色渐变-------end
+
 
         mRenderPaint.setStyle(Paint.Style.STROKE);
 
@@ -260,6 +309,9 @@ public class LineChartCircleRenderer extends LineRadarRenderer {
         mBitmapCanvas.drawPath(cubicPath, mRenderPaint);
 
         mRenderPaint.setPathEffect(null);
+        if (mColorGradient) {
+            mRenderPaint.setShader(null);
+        }
     }
 
     protected void drawCubicFill(Canvas c, ILineDataSet dataSet, Path spline, Transformer trans, XBounds bounds) {
@@ -371,8 +423,16 @@ public class LineChartCircleRenderer extends LineRadarRenderer {
                         .isInBoundsBottom(mLineBuffer[3])))
                     continue;
 
-                // get the color that is set for this line-segment
-                mRenderPaint.setColor(dataSet.getColor(j));
+                //修改颜色渐变-------start
+                if (!mColorGradient) {
+                    mRenderPaint.setColor(dataSet.getColor());
+                }else if(mColors != null && mColors.length != 0){
+                    LinearGradient linearGradient = new LinearGradient(0, 0, 100, 100, new int[] {
+                            mColors[0],mColors[1] }, null,
+                            Shader.TileMode.REPEAT);
+                    mRenderPaint.setShader(linearGradient);
+                }
+                //修改颜色渐变-------end
 
                 canvas.drawLines(mLineBuffer, 0, pointsPerEntryPair * 2, mRenderPaint);
             }
@@ -416,7 +476,16 @@ public class LineChartCircleRenderer extends LineRadarRenderer {
 
                     final int size = Math.max((mXBounds.range + 1) * pointsPerEntryPair, pointsPerEntryPair) * 2;
 
-                    mRenderPaint.setColor(dataSet.getColor());
+                    //修改颜色渐变-------start
+                    if (!mColorGradient) {
+                        mRenderPaint.setColor(dataSet.getColor());
+                    }else if(mColors != null && mColors.length != 0){
+                        LinearGradient linearGradient = new LinearGradient(0, 0, 100, 100, new int[] {
+                                mColors[0],mColors[1] }, null,
+                                Shader.TileMode.REPEAT);
+                        mRenderPaint.setShader(linearGradient);
+                    }
+                    //修改颜色渐变-------end
 
                     canvas.drawLines(mLineBuffer, 0, size, mRenderPaint);
                 }
@@ -424,6 +493,9 @@ public class LineChartCircleRenderer extends LineRadarRenderer {
         }
 
         mRenderPaint.setPathEffect(null);
+        if (mColorGradient) {
+            mRenderPaint.setShader(null);
+        }
     }
 
     protected Path mGenerateFilledPathBuffer = new Path();

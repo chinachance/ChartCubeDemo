@@ -241,7 +241,7 @@ public class HaoChartStyleFour {
                 lineDataSet.setCircleRadius(5f);
 
 
-                lineDataSet.setLineWidth(1f);//设置线的宽度
+                lineDataSet.setLineWidth(3f);//设置线的宽度
                 lineDataSet.setDrawValues(false);//不绘制线的数据
                 //设置折线图模式(直线,曲线...)
                 //曲线
